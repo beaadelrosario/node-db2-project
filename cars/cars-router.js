@@ -5,23 +5,23 @@ const db = require('../data/connection.js');
 const router = express.Router()
 
 router.get('/', (req, res) => {
-    db('cars')
+    db('car')
         .then(cars => {
             res.status(200).json({data: cars})
         })
-        .catch(err => {
-            res.status(500).json({error: error})
+        .catch(error => {
+            res.status(500).json({message: error})
         })
 });
 
 router.post('/', (req, res) => {
-    db('cars')
+    db('car')
     .insert(req.body)
     .then(car => {
         res.status(201).json({data: car})
     })
-    .catch(err => {
-        res.status(500).json({error: error.message})
+    .catch(error => {
+        res.status(500).json({message: error})
     })
 });
 
